@@ -1,11 +1,12 @@
 
 import React, { useState } from 'react';
 import { Check, Plus, X } from 'lucide-react';
-import { categories as initialCategories, Category, TransactionType } from '../data/mockData';
+import { Category, TransactionType } from '../data/mockData';
 import { cn } from '@/lib/utils';
 import { generateId } from '../utils/financeUtils';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useCategories } from '../context/CategoryContext';
 
 interface CategorySelectorProps {
   selectedCategoryId: string;
@@ -37,8 +38,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
   onSelectCategory,
   type,
 }) => {
-  // Use a local state to manage categories including newly added ones
-  const [categories, setCategories] = useState(initialCategories);
+  const { categories, addCategory } = useCategories();
   const [isAddingCategory, setIsAddingCategory] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState('');
   const [selectedIcon, setSelectedIcon] = useState('ShoppingBag');
@@ -55,7 +55,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
       type: type
     };
     
-    setCategories([...categories, newCategory]);
+    addCategory(newCategory);
     onSelectCategory(newCategory.id);
     setIsAddingCategory(false);
     setNewCategoryName('');

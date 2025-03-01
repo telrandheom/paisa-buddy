@@ -1,9 +1,10 @@
 
 import React from 'react';
-import { formatDate, formatCurrency, getCategoryName, getCategory } from '../utils/financeUtils';
-import { Transaction, TransactionType } from '../data/mockData';
+import { formatDate, formatCurrency } from '../utils/financeUtils';
+import { Transaction } from '../data/mockData';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { useCategories } from '../context/CategoryContext';
 
 // Import all icons we might need from lucide-react
 import * as IconsList from 'lucide-react';
@@ -29,6 +30,18 @@ const TransactionList: React.FC<TransactionListProps> = ({
   onEditTransaction,
   className,
 }) => {
+  const { categories } = useCategories();
+  
+  // Helper functions to get category information
+  const getCategory = (categoryId: string) => {
+    return categories.find(cat => cat.id === categoryId);
+  };
+  
+  const getCategoryName = (categoryId: string): string => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category ? category.name : 'Uncategorized';
+  };
+  
   // Group transactions by date
   const groupedTransactions: Record<string, Transaction[]> = {};
   

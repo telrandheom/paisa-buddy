@@ -1,4 +1,3 @@
-
 import { Transaction, categories, TransactionType } from '../data/mockData';
 
 // Format currency based on locale and currency
@@ -26,15 +25,15 @@ export function getBalance(transactions: Transaction[]): number {
 }
 
 // Get category name by id
-export function getCategoryName(categoryId: string): string {
+export const getCategoryName = (categoryId: string): string => {
   const category = categories.find(cat => cat.id === categoryId);
   return category ? category.name : 'Uncategorized';
-}
+};
 
 // Get category by id
-export function getCategory(categoryId: string) {
+export const getCategory = (categoryId: string): Category | undefined => {
   return categories.find(cat => cat.id === categoryId);
-}
+};
 
 // Filter transactions by type and search term
 export function filterTransactions(

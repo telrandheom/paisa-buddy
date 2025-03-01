@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { TransactionType, categories, Transaction } from '../data/mockData';
+import { TransactionType, Transaction } from '../data/mockData';
 import { generateId } from '../utils/financeUtils';
 import CategorySelector from './CategorySelector';
 import { Button } from '@/components/ui/button';
@@ -9,6 +8,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
+import { useCategories } from '../context/CategoryContext';
 
 interface ExpenseFormProps {
   onSubmit: (transaction: Transaction) => void;
@@ -21,6 +21,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({
   onCancel,
   initialType = 'expense' 
 }) => {
+  const { categories } = useCategories();
   const [amount, setAmount] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [categoryId, setCategoryId] = useState<string>(
@@ -94,7 +95,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({
         <h2 className="text-xl font-semibold">Add {type === 'expense' ? 'Expense' : 'Income'}</h2>
       </div>
       
-      <div className="space-y-4">
+      <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
         {/* Transaction Type Selector */}
         <div>
           <RadioGroup 

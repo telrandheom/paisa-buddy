@@ -129,7 +129,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
           
           <div className="space-y-2">
             <label className="text-xs font-medium">Icon</label>
-            <div className="grid grid-cols-6 gap-2 max-h-[150px] overflow-y-auto p-2 pr-3 rounded-md border border-border">
+            <div className="grid grid-cols-6 gap-2 max-h-[150px] pr-1 overflow-y-auto pb-1 pl-1 pt-1 rounded-md border border-border">
               {availableIcons.map((iconName) => {
                 const IconComponent = (IconsList as any)[iconName];
                 const isSelected = selectedIcon === iconName;

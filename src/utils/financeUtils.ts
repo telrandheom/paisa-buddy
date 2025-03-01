@@ -1,4 +1,5 @@
-import { Transaction, categories, TransactionType } from '../data/mockData';
+
+import { Transaction, categories, TransactionType, Category } from '../data/mockData';
 
 // Format currency based on locale and currency
 export function formatCurrency(amount: number, locale = 'en-IN', currency = 'INR'): string {

@@ -16,6 +16,8 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
+  DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import {
   Select,
@@ -118,7 +120,13 @@ const ExpenseTracker: React.FC = () => {
                 Add New
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[425px] max-h-[85vh] overflow-y-auto">
+              <DialogTitle className="sr-only">
+                Add {initialType === 'expense' ? 'Expense' : 'Income'}
+              </DialogTitle>
+              <DialogDescription className="sr-only">
+                Fill in the details to add a new {initialType === 'expense' ? 'expense' : 'income'} transaction
+              </DialogDescription>
               <ExpenseForm 
                 onSubmit={handleAddTransaction} 
                 onCancel={() => setIsAddingTransaction(false)}

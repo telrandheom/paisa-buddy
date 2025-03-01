@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
 import { TransactionType, categories, Transaction } from '../data/mockData';
 import { generateId } from '../utils/financeUtils';
 import CategorySelector from './CategorySelector';
@@ -93,14 +92,6 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({
     <form onSubmit={handleSubmit} className="space-y-6 animate-scale-in">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold">Add {type === 'expense' ? 'Expense' : 'Income'}</h2>
-        <Button 
-          type="button" 
-          variant="ghost" 
-          size="icon"
-          onClick={onCancel}
-        >
-          <X size={18} />
-        </Button>
       </div>
       
       <div className="space-y-4">

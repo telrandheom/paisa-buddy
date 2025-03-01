@@ -4,7 +4,7 @@ import ExpenseTracker from '../components/ExpenseTracker';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background py-8">
       <ExpenseTracker />
     </div>
   );
